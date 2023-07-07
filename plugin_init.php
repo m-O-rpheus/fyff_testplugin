@@ -16,7 +16,11 @@ defined( 'ABSPATH' ) || exit;
 
 add_filter('update_plugins_raw.githubusercontent.com', function( $update, $plugin_data, $plugin_file, $locales ) {
 
-    print_r( $plugin_data );
+
+    //$plugin_data['TextDomain']
+    
+
+    print_r( json_encode( $plugin_data ) );
 
     // Überprüfen, ob ein neues Update verfügbar ist
     //if (version_compare($plugin_data['Version'], '1.0.0', '<')) {
