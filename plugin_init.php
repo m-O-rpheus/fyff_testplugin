@@ -7,13 +7,13 @@
  * Author URI: https://markus-jaeger.de
  * License: GPL
  * Version: 1.0.0
- * Update URI: https://wprepository.semiweb.eu/json.json
+ * Update URI: https://raw.githubusercontent.com/m-O-rpheus/fyff_testplugin/main/plugins-info.json
  */
 
 defined( 'ABSPATH' ) || exit;
 
 
-add_filter('update_plugins_wprepository.semiweb.eu', function ( $update, $plugin_data, $plugin_file ) {
+add_filter('update_plugins_raw.githubusercontent.com', function ( $update, $plugin_data, $plugin_file ) {
 
     print_r( $plugin_data );
 
@@ -37,7 +37,7 @@ add_filter('update_plugins_wprepository.semiweb.eu', function ( $update, $plugin
     print_r( $custom_plugins_data );
     
 
-    
+
     if( ! empty( $custom_plugins_data[ $plugin_file ] ) )
         return $custom_plugins_data[ $plugin_file ];
     else
