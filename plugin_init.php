@@ -13,37 +13,39 @@
 defined( 'ABSPATH' ) || exit;
 
 
+add_filter('update_plugins_wprepository.semiweb.eu', function ( $update, $plugin_data, $plugin_file ) {
+
+    print_r( $plugin_data );
 
 
-if( ! function_exists( 'my_plugin_check_for_updates' ) ){
     
-    function my_plugin_check_for_updates( $update, $plugin_data, $plugin_file ){
+    static $response = false;
+    
+    if( empty( $plugin_data['UpdateURI'] ) || ! empty( $update ) )
+        return $update;
+    
+    if( $response === false )
+        $response = wp_remote_get( $plugin_data['UpdateURI'] );
+    
+    if( empty( $response['body'] ) )
+        return $update;
+    
+    $custom_plugins_data = json_decode( $response['body'], true );
 
-        print_r( $plugin_data );
-        
-        static $response = false;
-        
-        if( empty( $plugin_data['UpdateURI'] ) || ! empty( $update ) )
-            return $update;
-        
-        if( $response === false )
-            $response = wp_remote_get( $plugin_data['UpdateURI'] );
-        
-        if( empty( $response['body'] ) )
-            return $update;
-        
-        $custom_plugins_data = json_decode( $response['body'], true );
-        
-        if( ! empty( $custom_plugins_data[ $plugin_file ] ) )
-            return $custom_plugins_data[ $plugin_file ];
-        else
-            return $update;
-        
-    }
+
+
+    print_r( $custom_plugins_data );
     
-    add_filter('update_plugins_wprepository.semiweb.eu', 'my_plugin_check_for_updates', 10, 3);
+
     
-}
+    if( ! empty( $custom_plugins_data[ $plugin_file ] ) )
+        return $custom_plugins_data[ $plugin_file ];
+    else
+        return $update;
+    
+}, 10, 3);
+    
+
 
 
 
