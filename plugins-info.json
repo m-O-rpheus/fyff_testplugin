@@ -1,5 +1,9 @@
 {
     "name": "fyff_testplugin",
     "version": "2.0",
-    "slug": "fyff_testplugin-main"
+    "slug": "fyff_testplugin-main",
+
+
+    "latest_version": "3.0",
+	"download_url": "https://github.com/m-O-rpheus/fyff_testplugin/archive/refs/heads/main.zip"
 }
