@@ -1,6 +1,5 @@
 {
-    "fyff_testplugin-main/plugin_init.php":{
-        "new_version":"1.0.1",
-        "package":"https://github.com/m-O-rpheus/fyff_testplugin/archive/refs/heads/main.zip"
-    }
+    "name": "fyff_testplugin",
+    "version": "2.0",
+    "slug": "fyff_testplugin-main"
 }
