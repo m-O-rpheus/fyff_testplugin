@@ -36,8 +36,9 @@ add_filter('update_plugins_raw.githubusercontent.com', function ( $update, $plug
 
 
     print_r( $plugin_data );
+    echo "<br><br><br><br><br>";
     print_r( $my_plugin_data );
-    
+    echo "<br><br><br><br><br>";
 
 
     if( ! empty( $my_plugin_data[ $plugin_file ] ) ) {
