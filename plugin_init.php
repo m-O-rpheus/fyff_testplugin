@@ -14,7 +14,7 @@ defined( 'ABSPATH' ) || exit;
 
 
 
-add_filter('update_plugins_github.com', function( $update, $plugin_data, $plugin_file, $locales ) {
+add_filter('update_plugins_raw.githubusercontent.com', function( $update, $plugin_data, $plugin_file, $locales ) {
 
     // Überprüfen, ob ein neues Update verfügbar ist
     //if (version_compare($plugin_data['Version'], '1.0.0', '<')) {
@@ -22,7 +22,7 @@ add_filter('update_plugins_github.com', function( $update, $plugin_data, $plugin
     //}
 
     return $update;
-    
+
 }, 10, 4);
 
 
