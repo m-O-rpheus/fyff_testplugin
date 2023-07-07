@@ -13,65 +13,20 @@
 defined( 'ABSPATH' ) || exit;
 
 
-add_filter('update_plugins_raw.githubusercontent.com', function ( $update, $plugin_data, $plugin_file ) {
-    
-    static $response = false;
-    
-    if( empty( $plugin_data['UpdateURI'] ) || !empty( $update ) ) {
 
-        return $update;
+
+
+/* #INCLUDE "functions" DIR */
+/* ========================================================================================================================================================== */
+    $functions_dir = dirname(__FILE__) . DIRECTORY_SEPARATOR . 'functions' . DIRECTORY_SEPARATOR;
+
+    foreach ( scandir( $functions_dir ) as $file ) {
+
+        if ( pathinfo( $file, PATHINFO_EXTENSION ) === 'php' && file_exists( $functions_dir.$file ) ) {
+
+            require_once ( $functions_dir.$file );
+        }
     }
-
-    if( $response === false ) {
-
-        $response = wp_remote_get( $plugin_data['UpdateURI'] );
-    }
-
-    if( empty( $response['body'] ) ) {
-
-        return $update;
-    }
-
-    $my_plugin_data = json_decode( $response['body'], true );
-
-
-    print_r( $plugin_data );
-    echo "<br><br><br><br><br>";
-    print_r( $response );
-    echo "<br><br><br><br><br>";
-
-
-    if( ! empty( $my_plugin_data[ $plugin_file ] ) ) {
-
-        return $my_plugin_data[ $plugin_file ];
-    }
-    else {
-
-        return $update;
-    }
-    
-}, 10, 3 );
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-add_action( 'wp_footer', function () {
-
-    echo 'TEST';
-
-}, 10, 0 );
-
 
 
 ?>
