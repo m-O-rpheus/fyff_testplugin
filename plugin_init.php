@@ -14,39 +14,38 @@ defined( 'ABSPATH' ) || exit;
 
 
 
-add_filter('update_plugins_wprepository.semiweb.eu', function( $update, $plugin_data, $plugin_file, $locales ) {
 
-
-    /*if ( array_key_exists('package', $plugin_data) ) {
-
-
+if( ! function_exists( 'my_plugin_check_for_updates' ) ){
+    
+    function my_plugin_check_for_updates( $update, $plugin_data, $plugin_file ){
         
-
-        return [
-            'slug' => $plugin_data['TextDomain'],
-            'version' => $plugin_data['package'],
-            'url' => $plugin_data['PluginURI'],
-            'package' => $plugin_data['package'],
-        ]
-
-    }*/
-
+        static $response = false;
+        
+        if( empty( $plugin_data['UpdateURI'] ) || ! empty( $update ) )
+            return $update;
+        
+        if( $response === false )
+            $response = wp_remote_get( $plugin_data['UpdateURI'] );
+        
+        if( empty( $response['body'] ) )
+            return $update;
+        
+        $custom_plugins_data = json_decode( $response['body'], true );
+        
+        if( ! empty( $custom_plugins_data[ $plugin_file ] ) )
+            return $custom_plugins_data[ $plugin_file ];
+        else
+            return $update;
+        
+    }
     
-
-    //Array ( [slug] => fyff_testplugin-main [version] => 2.0.0 [url] => https://fyff.net [package] => https://github.com/m-O-rpheus/fyff_testplugin/archive/refs/heads/main.zip )
+    add_filter('update_plugins_wprepository.semiweb.eu', 'my_plugin_check_for_updates', 10, 3);
     
+}
 
-    print_r( $plugin_data );
-    echo "<br><br><br>";
 
-    // Überprüfen, ob ein neues Update verfügbar ist
-    //if (version_compare($plugin_data['Version'], '1.0.0', '<')) {
-        $update = true;
-    //}
 
-    return $update;
 
-}, 10, 4);
 
 
 
