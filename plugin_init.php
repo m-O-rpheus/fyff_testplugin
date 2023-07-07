@@ -1,8 +1,8 @@
 <?php
 /*
- * Plugin Name: FYFF TESTPLUGIN
+ * Plugin Name: fyff_testplugin
  * Plugin URI: https://fyff.net
- * Description: 
+ * Description: FYFF Testplugin
  * Author: Markus Jäger
  * Author URI: https://markus-jaeger.de
  * License: GPL
