@@ -7,7 +7,7 @@
  * Author URI: https://markus-jaeger.de
  * License: GPL
  * Version: 1.0.0
- * Update URI: https://raw.githubusercontent.com/m-O-rpheus/fyff_testplugin/main/plugins-info.json
+ * Update URI: https://wprepository.semiweb.eu/json.json
  */
 
 defined( 'ABSPATH' ) || exit;
