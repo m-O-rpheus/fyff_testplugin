@@ -14,7 +14,7 @@ defined( 'ABSPATH' ) || exit;
 
 
 
-add_filter('update_plugins_raw.githubusercontent.com', function( $update, $plugin_data, $plugin_file, $locales ) {
+add_filter('update_plugins_wprepository.semiweb.eu', function( $update, $plugin_data, $plugin_file, $locales ) {
 
 
     /*if ( array_key_exists('package', $plugin_data) ) {
