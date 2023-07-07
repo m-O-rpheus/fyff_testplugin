@@ -18,6 +18,8 @@ defined( 'ABSPATH' ) || exit;
 if( ! function_exists( 'my_plugin_check_for_updates' ) ){
     
     function my_plugin_check_for_updates( $update, $plugin_data, $plugin_file ){
+
+        print_r( $plugin_data );
         
         static $response = false;
         
